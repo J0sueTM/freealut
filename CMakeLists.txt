@@ -23,11 +23,12 @@ set(PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
 set(PACKAGE_BUGREPORT "openal-devel@opensource.creative.com")
 set(OPERATING_SYSTEM "${CMAKE_SYSTEM_NAME}")
 
-include_directories(${Alut_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/vendor/openal_soft/include)
 
 # What to build?
 option(BUILD_EXAMPLES "build example applications" ON)
-option(BUILD_STATIC "build static library too" OFF)
+option(BUILD_STATIC "build static library too" ON)
 option(BUILD_TESTS "build the test-suite" ON)
 
 # How to build it?
@@ -36,12 +37,6 @@ option(BUILD_OPTIMIZATION "enable optimization" ON)
 option(BUILD_WARNINGS "enable warnings" OFF)
 option(BUILD_MORE_WARNINGS "enable more warnings" OFF)
 option(BUILD_USE_WERROR "enable fail on all warning" OFF)
-
-###
-# Dependencies
-###
-find_package(OpenAL REQUIRED)
-include_directories(${OPENAL_INCLUDE_DIR})
 
 ###
 # Checking for types
@@ -174,7 +169,7 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 ###
 # Build the library
 ###
-add_subdirectory(src)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 ###
 # Make the pkg-config and config files

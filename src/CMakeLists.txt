@@ -44,7 +44,7 @@ if(BUILD_STATIC)
 	# we can't create a static library with the same name
 	# as the shared one, so we copy it over after creation
 	add_library(alut_static STATIC ${ALUT_SOURCES} ${ALUT_INTERNAL_HEADERS} ${ALUT_HEADERS})
-	target_link_libraries(alut_static ${OPENAL_LIBRARY} ${ADD_LIBS})
+	target_link_libraries(alut_static OpenAL ${ADD_LIBS})
 	if(UNIX)
 		target_link_libraries(alut_static m)
 	endif()	
@@ -79,7 +79,7 @@ set_target_properties(alut
 	${MAJOR_VERSION}
 	SOVERSION
 	${MAJOR_VERSION})
-target_link_libraries(alut ${OPENAL_LIBRARY})
+target_link_libraries(alut OpenAL)
 if(UNIX)
 	target_link_libraries(alut m)
 endif()	
